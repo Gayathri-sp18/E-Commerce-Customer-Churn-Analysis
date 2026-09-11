@@ -116,7 +116,6 @@ A separate returns dataset is connected with customer information using an `INNE
 
 ## 🧠 SQL Concepts Used
 
-<div align="center">
 
 `SELECT` · `WHERE` · `GROUP BY` · `ORDER BY` · `LIMIT` · `DISTINCT`
 
@@ -146,10 +145,10 @@ A separate returns dataset is connected with customer information using an `INNE
 
 ## 🛠️ Tools & Technologies
 
-**Database:** MySQL
-**Environment:** MySQL Workbench
-**Analysis:** SQL
-**Version Control:** GitHub
+* **Database:** MySQL
+* **Environment:** MySQL Workbench
+* **Analysis:** SQL
+* **Version Control:** GitHub
 
 ---
 
