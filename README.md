@@ -1,231 +1,173 @@
-# 🛒 E-Commerce Customer Churn Analysis — MySQL
+<div align="center">
 
-<p align="center">
-  <b>Customer Churn Analysis using MySQL</b><br>
-  Data Cleaning • SQL Queries • Customer Behaviour Analysis • Business Insights
+# 🛒 E-Commerce Customer Churn Analysis
+
+### MySQL | Customer Analytics | Data Exploration
+
+<p>
+  <img src="https://img.shields.io/badge/SQL-MySQL-blue?style=for-the-badge&logo=mysql&logoColor=white">
+  <img src="https://img.shields.io/badge/Data%20Analysis-SQL-orange?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Customer%20Analytics-Churn-green?style=for-the-badge">
 </p>
+
+</div>
 
 ---
 
 ## 📌 Project Overview
 
-This project focuses on analyzing **e-commerce customer churn and customer behaviour using MySQL**.
+This project analyzes **e-commerce customer churn and customer behaviour using MySQL**.
 
-The dataset contains customer-level information such as tenure, login device, payment mode, order category, satisfaction score, complaints, coupon usage, order count, cashback amount, and churn status.
+The analysis explores customer demographics, purchasing behaviour, payment preferences, satisfaction, complaints, coupon usage, cashback, order activity, delivery distance, and customer returns.
 
-The project involves creating a MySQL database, preparing and transforming the customer data, performing exploratory analysis, and answering business-oriented questions using SQL.
-
-The analysis also includes a separate Customer Returns table to examine relationships between returns, customer complaints, and churn status.
+The project demonstrates how SQL can be used to transform customer data into meaningful insights for understanding customer retention and churn patterns.
 
 ---
 
 ## 🎯 Objectives
 
-The main objectives of this project are to:
-
-* Analyze customer churn patterns.
-* Understand customer behaviour and purchasing preferences.
-* Examine customer satisfaction and complaints.
-* Analyze payment methods and order categories.
-* Explore coupon and cashback usage.
-* Compare customer activity across different city tiers.
-* Categorize customers based on warehouse-to-home distance.
-* Identify relationships between customer returns, complaints, and churn.
-* Generate meaningful insights using SQL queries.
+* Analyze customer churn and retention patterns
+* Explore customer purchasing behaviour
+* Identify preferred payment methods and order categories
+* Examine customer satisfaction and complaints
+* Analyze coupon and cashback usage
+* Compare customer activity across city tiers
+* Categorize customers based on warehouse-to-home distance
+* Analyze the relationship between returns, complaints, and churn
+* Extract business insights using SQL
 
 ---
 
-## 🗃️ Database & Tables
+## 🗂️ Dataset
 
-### Database
+The primary dataset contains customer-level information covering:
 
-```sql
-ecomm
-```
+* Customer tenure
+* Preferred login device
+* City tier
+* Warehouse-to-home distance
+* Preferred payment mode
+* Gender
+* App usage
+* Registered devices
+* Preferred order category
+* Satisfaction score
+* Marital status
+* Number of addresses
+* Order amount growth
+* Coupon usage
+* Order count
+* Days since last order
+* Cashback amount
+* Complaints
+* Churn status
 
-### Main Table
-
-```text
-customer_churn
-```
-
-The `customer_churn` table contains customer-level behavioural and demographic information, including:
-
-| Column                      | Description                                          |
-| --------------------------- | ---------------------------------------------------- |
-| CustomerID                  | Unique customer identifier                           |
-| Churn                       | Original churn indicator                             |
-| Tenure                      | Customer tenure                                      |
-| PreferredLoginDevice        | Preferred device used to log in                      |
-| CityTier                    | Customer city classification                         |
-| WarehouseToHome             | Distance between warehouse and home                  |
-| PreferredPaymentMode        | Preferred payment method                             |
-| Gender                      | Customer gender                                      |
-| HourSpendOnApp              | Time spent on the application                        |
-| NumberOfDeviceRegistered    | Number of registered devices                         |
-| PreferedOrderCat            | Preferred order category                             |
-| SatisfactionScore           | Customer satisfaction rating                         |
-| MaritalStatus               | Customer marital status                              |
-| NumberOfAddress             | Number of registered addresses                       |
-| Complain                    | Original complaint indicator                         |
-| OrderAmountHikeFromlastYear | Increase in order amount compared with previous year |
-| CouponUsed                  | Number of coupons used                               |
-| OrderCount                  | Number of orders                                     |
-| DaySinceLastOrder           | Days since the customer's last order                 |
-| CashbackAmount              | Cashback received                                    |
-
-The project later creates more descriptive fields such as:
-
-* `ComplaintReceived`
-* `ChurnStatus`
-
-These are used to make the analysis easier to interpret.
-
----
-
-## 🔄 Data Preparation & Transformation
-
-The SQL workflow includes several data preparation and transformation steps before analysis.
-
-### Key transformations include:
-
-* Creating the `ecomm` database.
-* Creating the `customer_churn` table.
-* Loading customer records into the database.
-* Handling missing values during analysis.
-* Creating a readable complaint status.
-* Creating a readable churn status.
-* Removing the original binary `Churn` and `Complain` columns after creating descriptive status fields.
-* Creating a separate `customer_returns` table.
-* Combining customer and return information using an `INNER JOIN`.
-
-For example, churn is transformed into a more readable status:
-
-```sql
-CASE
-    WHEN Churn = 1 THEN 'Churned'
-    ELSE 'Active'
-END
-```
-
-The resulting values are stored in the `ChurnStatus` column.
+A separate Customer Returns table is also created to analyze return activity alongside customer churn and complaints.
 
 ---
 
 ## 🔍 Analysis Performed
 
-The project answers multiple business questions using SQL.
-
 ### 👥 Customer Churn
 
-* Count of active and churned customers.
-* Average tenure of churned customers.
-* Total cashback received by churned customers.
-* Percentage of churned customers who submitted complaints.
+* Active vs. churned customer distribution
+* Average tenure of churned customers
+* Total cashback received by churned customers
+* Complaint percentage among churned customers
 
-### 🛍️ Customer Purchasing Behaviour
+### 🛍️ Customer Behaviour
 
-* Most common order categories.
-* Customer distribution across city tiers.
-* Total order amount increase for selected customer groups.
-* Average order count.
-* Maximum order count.
-* Customers using more than five coupons.
-* Order categories associated with higher coupon usage.
+* Preferred order categories
+* Order activity by customer segment
+* Coupon usage patterns
+* Customer activity across city tiers
 
-### 💳 Payment Behaviour
+### 💳 Payment Analysis
 
-* Most preferred payment method among active customers.
-* Average number of registered devices among customers using UPI.
-* Payment methods associated with specific customer conditions.
+* Most preferred payment method among active customers
+* Device usage among UPI customers
+* Payment preferences under specific customer conditions
 
-### ⭐ Customer Satisfaction
+### ⭐ Satisfaction & Complaints
 
-* Maximum satisfaction score.
-* Total orders placed by customers using credit cards with the highest satisfaction score.
-* Average satisfaction score among customers who submitted complaints.
+* Maximum satisfaction score
+* Average satisfaction score among customers who complained
+* Order activity of highly satisfied customers
 
-### 💰 Cashback Analysis
+### 💰 Cashback & Coupons
 
-The project calculates the average cashback by preferred order category and identifies the top categories based on average cashback.
+* Average cashback by order category
+* Top categories based on average cashback
+* Order categories associated with higher coupon usage
 
-### 📍 Distance Analysis
+### 📍 Distance & Churn
 
-Customers are categorized according to their warehouse-to-home distance:
+Customers are categorized into:
 
-```text
-Very Close Distance
-Close Distance
-Moderate Distance
-Far Distance
-```
+`Very Close` → `Close` → `Moderate` → `Far`
 
-The analysis then compares these distance categories with customer churn status.
+The analysis compares these distance categories with customer churn status.
 
----
+### 🔄 Customer Returns
 
-## 🔁 Customer Returns Analysis
-
-A separate `customer_returns` table is created containing:
-
-* Return ID
-* Customer ID
-* Return date
-* Refund amount
-
-The project then joins the returns data with the customer churn data to identify returned orders associated with customers who:
-
-* Have churned
-* Have submitted complaints
-
-This demonstrates the use of SQL JOIN operations for combining related datasets.
+A separate returns dataset is connected with customer information using an `INNER JOIN` to identify returned customers who are both churned and complaint-affected.
 
 ---
 
 ## 🧠 SQL Concepts Used
 
-This project demonstrates practical use of:
+<div align="center">
 
-* `CREATE DATABASE`
-* `CREATE TABLE`
-* `INSERT INTO`
-* `ALTER TABLE`
-* `UPDATE`
-* `DROP COLUMN`
-* `SELECT`
-* `WHERE`
-* `GROUP BY`
-* `ORDER BY`
-* `LIMIT`
-* `DISTINCT`
-* `CASE`
-* Aggregate functions
+`SELECT` · `WHERE` · `GROUP BY` · `ORDER BY` · `LIMIT` · `DISTINCT`
 
-  * `COUNT()`
-  * `SUM()`
-  * `AVG()`
-  * `MAX()`
-* `ROUND()`
-* Subqueries
-* Conditional aggregation
-* Percentage calculations
-* `INNER JOIN`
-* Data transformation
-* Exploratory data analysis
+`CASE` · `COUNT()` · `SUM()` · `AVG()` · `MAX()` · `ROUND()`
+
+`UPDATE` · `ALTER TABLE` · `CREATE TABLE` · `INSERT INTO`
+
+`INNER JOIN` · `Subqueries` · `Conditional Aggregation`
+
+</div>
 
 ---
 
-## 🛠️ Tools Used
+## 📊 Key Analytical Areas
 
-| Tool                | Purpose                             |
-| ------------------- | ----------------------------------- |
-| **MySQL**           | Database creation and SQL analysis  |
-| **MySQL Workbench** | Writing and executing SQL queries   |
-| **GitHub**          | Project documentation and portfolio |
+| Area                   | Analysis                       |
+| ---------------------- | ------------------------------ |
+| **Churn**              | Active vs. churned customers   |
+| **Customer Behaviour** | Orders, categories & app usage |
+| **Payments**           | Preferred payment methods      |
+| **Satisfaction**       | Satisfaction & complaints      |
+| **Marketing**          | Coupons & cashback             |
+| **Location**           | City tier & delivery distance  |
+| **Returns**            | Returns, complaints & churn    |
 
 ---
 
-## 📂 Project Structure
+## 🛠️ Tools & Technologies
+
+**Database:** MySQL
+**Environment:** MySQL Workbench
+**Analysis:** SQL
+**Version Control:** GitHub
+
+---
+
+## 💼 Skills Demonstrated
+
+* SQL Data Analysis
+* Data Exploration
+* Data Cleaning & Transformation
+* Customer Churn Analysis
+* Aggregation & Filtering
+* Joins & Subqueries
+* Conditional Logic
+* Business Problem Solving
+* Customer Behaviour Analysis
+
+---
+
+## 📁 Project Structure
 
 ```text
 E-Commerce-Customer-Churn-Analysis/
@@ -236,82 +178,14 @@ E-Commerce-Customer-Churn-Analysis/
 
 ---
 
-## ▶️ How to Run the Project
-
-### 1. Install MySQL
-
-Use **MySQL Workbench** or another MySQL-compatible environment.
-
-### 2. Open the SQL file
-
-Open:
-
-```text
-E-Commerce_Customer_Churn_Analysis.sql
-```
-
-### 3. Execute the script
-
-Run the SQL script from top to bottom.
-
-The script will:
-
-1. Create the `ecomm` database.
-2. Create the `customer_churn` table.
-3. Insert the customer data.
-4. Perform data preparation and transformations.
-5. Execute customer churn analysis queries.
-6. Create the `customer_returns` table.
-7. Perform the customer returns analysis.
-
-### 4. Explore the results
-
-Execute individual queries to view the results of each analysis.
-
----
-
-## 📊 Key Business Areas Explored
-
-```text
-Customer Churn
-      ↓
-Customer Behaviour
-      ↓
-Orders & Purchasing Patterns
-      ↓
-Payment Preferences
-      ↓
-Customer Complaints
-      ↓
-Satisfaction
-      ↓
-Coupons & Cashback
-      ↓
-Returns & Refunds
-```
-
----
-
-## 💡 Skills Demonstrated
-
-Through this project, I demonstrated practical skills in:
-
-* SQL querying
-* Data cleaning and transformation
-* Exploratory data analysis
-* Customer churn analysis
-* Aggregation and filtering
-* Business-oriented problem solving
-* Relational data analysis
-* SQL joins and subqueries
-* Converting raw data into meaningful business information
-
----
-
-## 👩‍💻 Author
-
-**Gayathri S Pillai**
-
-Aspiring Data Analyst | MBA – Business Analytics & Marketing
 
 
+### 👩‍💻 Gayathri S Pillai
+
+**Aspiring Data Analyst | MBA – Business Analytics & Marketing**
+
+<div align="center">
+
+⭐ *Turning data into meaningful business insights.*
+
+</div>
